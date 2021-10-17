@@ -1,0 +1,28 @@
+.pull-right{
+  float: right;
+  margin-bottom: 10px;
+}
+.like{
+
+}
+
+.bi{
+  margin-left: 2px;
+  margin-right: 2px;
+  font-size: 2rem;
+}
+button{
+  margin: 2px;
+}
+#main{
+  overflow-x: hidden;
+}
+h2{
+
+}
+.head{
+  margin-left: 15px;
+}
+i{
+  cursor: pointer;
+}

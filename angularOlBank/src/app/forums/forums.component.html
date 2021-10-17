@@ -1,0 +1,105 @@
+<noscript><h2 style="color: #ff0000">Seems your browser doesn't support Javascript! Websocket relies on Javascript being
+    enabled. Please enable
+    Javascript and reload this page!</h2></noscript>
+
+<div class="main-content" id="main">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="create-forum">
+                    <img src="/assets/img/bubble.png" alt="Snow" style="width:50%;">
+                    <div class="centered">Ask a question <br> or create a new topic!<br><a><i
+                            (click)="navigate('/createTopic')" class="bi-question-circle"
+                            style="font-size: 2.5rem"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="create-forum">
+                    <img src="/assets/img/find.png" alt="Snow" style="width:50%;">
+                    <div class="centered2">Find what you<br> are searching for <br><a (click)="scroll(target)"><i
+                            class="bi-binoculars"
+                            style="font-size: 2.5rem"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card" id="main-card">
+            <div id="x">
+                <div class="header">
+                    <div class="media-msg">
+                        <div class="leftx">
+                    <h4 class="title">Most popular topics</h4>
+                    <p class="category">Click to display</p>
+                        </div>
+                    <div class="rightx" (click)="navigate('/forumBi')" *ngIf="admin">
+                        <i class="bi bi-graph-up"
+                           style="font-size: 2rem; color: #4cae4c;"></i>
+                        <i class="bi bi-unlock"
+                           style="font-size: 2rem; color: #4cae4c;"></i><label
+                            class="like"> Admin </label>
+                    </div>
+                </div>
+                </div>
+                <div class="content table-responsive table-full-width">
+                    <table class="table table-hover">
+
+                        <tbody>
+                        <tr *ngFor="let f of listForum | async" (click)="navigate('/topic/'+f.forumId)">
+                            <td>{{f.topic}}</td>
+                            <td>Responses <br style="color:black;font-weight:bold;">{{f.totalMessage}}</td>
+                            <td>Reactions <br> <i class="bi bi-emoji-angry"
+                                                  style="font-size: 1.5rem; color: darkred;"></i> <label
+                                    class="like"> {{f.totalDisLike}} </label> <i class="bi bi-emoji-heart-eyes"
+                                                                                 style="font-size: 1.5rem; color: mediumseagreen;"></i>
+                                <label
+                                        class="like"> {{f.totalLike}} </label></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!--<app-topic [topic]="topic" hidden></app-topic>-->
+            </div>
+        </div>
+    </div>
+</div>
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card" id="main-card2">
+                    <div class="header">
+                        <h4 class="title" style="color: white">Find topic</h4>
+                    </div>
+                    <div class="content">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="create-forum">
+                                    <input type="text" #target style="color: white" class="form-control"
+                                           placeholder="key words" [(ngModel)]="topic">
+                                    <a (click)="refreshForumMatchList()" class="pull-right"><i class="bi-search"
+                                                                                               style="font-size: 2.5rem"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <table class="table ">
+
+                            <tbody>
+                            <tr *ngFor="let f of listForumMatch" (click)="navigate('/topic/'+f.forum.forumId)"
+                                style="color: white">
+                                <td>{{f.forum.topic}}</td>
+                                <td>Creation date <br style="color:black;font-weight:bold;">{{f.forum.forumDate}}</td>
+                                <td>Matching words <br> <label
+                                        class="like"> {{f.nbrWordMatch}} </label></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+

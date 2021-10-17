@@ -1,0 +1,96 @@
+<noscript><h2 style="color: #ff0000">Seems your browser doesn't support Javascript! Websocket relies on Javascript being
+    enabled. Please enable
+    Javascript and reload this page!</h2></noscript>
+<div class="main-content" id="main">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="head">
+
+                <div class="row">
+                    <div class="col-md-10">
+                        <h2>
+                            {{ forum.topic }}
+                        </h2>
+                     <!--   <button (click)="changeColorIflikeOrDislike(message,user)"></button> -->
+                    </div>
+                    <br>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <form class="form-inline">
+                            <div class="form-group">
+                            </div>
+                        </form>
+                    </div>
+                    <!--   <p> {{ message }}</p> -->
+                </div>
+                <hr>
+
+            </div>
+            <div class="container">
+
+                <div class="row">
+
+                    <div class="message-wrap col-md-10">
+                        <div class="msg-wrap">
+
+                            <!--     <div class="alert alert-info msg-date">
+                                     <strong>Today</strong>
+                                 </div> -->
+                            <!-- **********************************************************-->
+
+
+                            <div class="media msg" *ngFor="let m of listMessage2"
+                                 (change)="changeColorIflikeOrDislike(m,user)">
+                                <a class="pull-left" href="#">
+                                    <img class="media-object" data-src="holder.js/64x64" alt="64x64"
+                                         style="width: 40px; height: 40px;"
+                                         src="/assets/ico/starwars_boba_fett_icon_131814.ico">
+                                </a>
+                                <div class="media-body">
+                                    <small class="pull-right time"><i
+                                            class="fa fa-clock-o"></i>{{dateFormat(m.dateTime)}}</small>
+
+                                    <h5 class="media-heading">{{listUsers[m.userId]}}</h5>
+                                    <small class="col-lg-10"><span style="white-space: pre-line"[innerHtml]="m.messageTxt+m.messageId"></span></small>
+                                </div>
+                                <a class="pull-right">
+                                    <i *ngIf="admin" class="bi bi-trash" style=""
+                                       (click)="deleteMessage(m)"></i>
+
+                                    <i id="d{{m.messageId}}" class="bi bi-emoji-angry-fill" style=""
+                                       (click)="disLikeMethod(m)"></i>
+                                    <label class="like"> {{m.nbrDisLike}} </label>
+                                    <i id="l{{m.messageId}}" class="bi bi-emoji-heart-eyes-fill" style=""
+                                       (click)="likeMethod(m)"></i>
+                                    <label class="like"> {{m.nbrLike}} </label>
+                                </a>
+                                <br>
+                                <hr>
+                            </div>
+
+                        </div>
+                        <div class="send-wrap ">
+        <textarea class="form-control send-message" [(ngModel)]="messageTxt" rows="3"
+                  placeholder="Write a reply..."></textarea>
+                            <angular-editor [placeholder]="'Enter text here...'" [(ngModel)]="messageTxt"
+                                            [config]="editorConfig"></angular-editor>
+                        </div>
+                        <div class="btn-panel">
+                          <!--  <a class=" col-lg-3 btn   send-message-btn " role="button"><i
+                                    class="fa fa-cloud-upload"></i>
+                                Add Files</a> -->
+                            <button (click)="sendMessageHtml();scroll('target')"
+                               class=" col-lg-4 text-right btn   send-message-btn pull-right" role="button"
+                               [disabled]="messageTxt===''"><i
+                                    class="fa fa-plus"></i> Send Message</button>
+                        </div>
+                        <div id="target"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,6 @@
+<div class="main-content card">
+    <h5 style="color: grey"> <span data-notify="icon" class="pe-7s-bell"></span>
+        {{ (notif$ | async)?.title }}</h5>
+    <br>
+    <div [innerHtml]="(notif$ | async)?.body"></div>
+</div>

@@ -1,0 +1,30 @@
+<div class="main-content">
+    <div>
+        <select [(ngModel)]="selected" style="height: 30px; width: 30%;">
+            <option [value]="null"></option>
+            <option *ngFor="let notif of notifs" [value]="notif.id"> {{ notif.title }}</option>
+        </select>
+        <select style="height: 30px; width: 30%;">
+            <option *ngFor="let cron of crons" [value]="cron.cron">{{ cron.title }}</option>
+        </select>
+        <select style="height: 30px; width: 30%;" (change)="selectUser($event)">
+            <option *ngFor="let user of users" [value]="user">{{ user }}</option>
+        </select>
+    </div>
+    <div style="margin :10px">
+        <app-chips *ngFor="let user of selectedUsers"(onClose)="close(user)"> {{ user }}</app-chips>
+    </div>
+    <div class="content table-responsive table-full-width">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th *ngFor="let cell of headers">{{ cell }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let row of notifs">
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

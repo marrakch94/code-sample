@@ -1,0 +1,91 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card ">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <h2 class="card-title text-uppercase text-muted mb-0">{{msgStat.title}}</h2>
+                                <span class="h2 font-weight-bold mb-0">{{msgStat.valueN}}</span>
+                            </div>
+                            <div class="col-auto">
+                                <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
+                                    <i class="bi bi-pen"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="mt-3 mb-0 text-muted text-sm">
+                            <span class="text-success mr-2"*ngIf="msgStat.evolution>0">
+                                <i class="fa fa-arrow-up"></i> {{msgStat.evolution.toFixed(2)}}%</span>
+                            <span class="text-danger mr-2" *ngIf="msgStat.evolution<0">
+                                <i class="fa fa-arrow-down"></i> {{msgStat.evolution.toFixed(2)}}%</span>
+                            <span class="text-danger mr-2" *ngIf="msgStat.evolution==0">
+                                <i class="bi bi-dash-lg"></i> {{msgStat.evolution.toFixed(2)}}%</span>
+                            <span class="text-nowrap">Since last month</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card ">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <h2 class="card-title text-uppercase text-muted mb-0">{{userStat.title}}</h2>
+                                <span class="h2 font-weight-bold mb-0">{{userStat.valueN}}</span>
+                            </div>
+                            <div class="col-auto">
+                                <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
+                                    <i class="bi bi-people"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="mt-3 mb-0 text-muted text-sm">
+                            <span class="text-success mr-2"*ngIf="userStat.evolution>0">
+                                <i class="fa fa-arrow-up"></i> {{userStat.evolution.toFixed(2)}}%</span>
+                            <span class="text-danger mr-2" *ngIf="userStat.evolution<0">
+                                <i class="fa fa-arrow-down"></i> {{userStat.evolution.toFixed(2)}}%</span>
+                            <span class="text-danger mr-2" *ngIf="userStat.evolution==0">
+                                <i class="bi bi-dash-lg"></i> {{userStat.evolution.toFixed(2)}}%</span>
+                            <span class="text-nowrap">Since last month</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+     <!--   <button class="danger" (click)="loadMyChildComponent()">Display</button>
+        <button class="danger" (click)="refreshData()">Refresh</button> -->
+        <div class="row">
+            <div class="col-md-5">
+                <lbd-chart *ngIf="loadComponent"
+                           [title]="'Most recurring words'"
+                           [subtitle]="'in top 10 disliked topic'"
+                           [chartType]="activityChartType"
+                           [chartData]="activityChartData"
+                           [chartOptions]="activityChartOptions"
+                           [chartResponsive]="activityChartResponsive"
+                           [legendItems]="activityChartLegendItems"
+                           [withHr]="true"
+                           [footerIconClass]="'fa fa-history'"
+                           [footerText]="'Data refreshed on connection'" >
+                </lbd-chart>
+            </div>
+            <div class="col-md-7">
+                <lbd-chart *ngIf="loadComponentMsg"
+                        [title]="'Evolution of post,like and forum numbers'"
+                        [subtitle]="'since january, current year'"
+                        [chartType]="hoursChartType"
+                        [chartData]="hoursChartData"
+                        [chartOptions]="hoursChartOptions"
+                        [chartResponsive]="hoursChartResponsive"
+                        [legendItems]="hoursChartLegendItems"
+                        [withHr]="true"
+                        [footerIconClass]="'fa fa-history'"
+                        [footerText]="'Data refreshed on connection'">
+                </lbd-chart>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,60 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row ">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="content">
+                        <div class="row">
+                            <form #form="ngForm" (ngSubmit)="login(form)" [formGroup]="loginForm" class="form">
+                                <div class="col-md-offset-4"><img src="assets/ico/online-banking.svg" alt=""
+                                                                  width="300px" height="300px;"/></div>
+                                <!-- <ion-title style="position: relative;">S'identifier</ion-title> -->
+                                <div class="col-md-offset-5 form-group">
+                                    <label>
+                                        <input class="form-control" name="username" formControlName="username" [type]="username"
+                                               placeholder="User Name" ngModel
+                                               required/>
+                                    </label>
+                                    <span slot="end" class="etoile">*</span>
+                                    <div *ngIf="(loginForm.get('username').invalid &&
+                (loginForm.get('username').touched || loginForm.get('username').dirty || submitClicked))"
+                                         class="span-alert">
+                                        <span *ngIf="loginForm.get('username').hasError('required') ">Required fields *</span>
+                                        <span *ngIf="loginForm.get('username').hasError('username') ">Please enter a valid email address</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-offset-5 form-group">
+                                    <label>
+                                        <input class="form-control" name="password" formControlName="password" [type]="passwordType"
+                                               placeholder="Mot de Passe"
+                                               ngModel required/>
+                                    </label>
+                                    <img slot="end" [name]="passwordShown ? 'eye' : 'eye-off'"
+                                         (click)="tooglePassword()" alt=""/>
+                                    <span slot="end" class="etoile">*</span>
+                                    <div *ngIf="(loginForm.get('password').invalid && (loginForm.get('password').touched
+                || loginForm.get('password').dirty || submitClicked))" class="span-alert">
+                                        <span *ngIf="loginForm.get('password').hasError('required') ">Required fields *</span>
+                                        <span *ngIf="loginForm.get('password').hasError('minlength') ">At least 6 characters</span>
+                                    </div>
+                                </div>
+
+
+                                <!--                        <div class="container-pass">-->
+                                <!--                            <a (click)="forgotPassword()" class="forgot-pass">Mot de passe oublié ?</a>-->
+                                <!--                        </div>-->
+                                <button class="btn btn-info btn-fill col-md-offset-5" type="submit"
+                                        [disabled]="form.invalid">
+                                    Connexion
+                                </button>
+                            </form>
+                            <div class="row">
+                                <div class="col-md-offset-5"><a href="/signup">Inscription</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

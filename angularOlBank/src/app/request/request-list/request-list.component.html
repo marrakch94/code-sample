@@ -1,0 +1,53 @@
+
+<div class="main-content">
+  <h2>Requests List</h2>
+  <h3>          <a
+            class="actionBtn"
+             [routerLink]="['/request/create']"
+            >Create</a
+          >
+          </h3>
+  <div class="table-responsive">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Request Date</th>
+          <th>Request Type</th>
+          <th>State</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of data" >
+          <td>{{item.id}}</td>
+          <td>{{item.requestDate}}</td>
+          <td>{{item.requestType}}</td>
+          <td >
+            <button type="button" (click)="changeRequestState(item.id)"  [class] = "item.status == 'accepted' ? 'btn btn-success' : 'btn btn-danger'">{{item.status}}</button>
+          </td>
+          <td>
+            <a
+             [routerLink]="['/request/edit', item.id]"
+            class="actionBtn"
+            >Modifier</a
+          >
+          <br />
+          <a
+            class="actionBtn"
+            [routerLink]="['/request/detail', item.id]"
+            >Detail
+            </a
+          >
+          <br />
+          <a
+            class="actionBtn"
+            (click)="deleteRequest($event, item.id)"
+            >Supprimer</a
+          >
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

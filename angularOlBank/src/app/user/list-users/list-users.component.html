@@ -1,0 +1,84 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">Users Statistics</h4>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div *ngIf="active">
+                                <lbd-chart
+                                        [title]="''"
+                                        [subtitle]="'Active Users'"
+                                        [chartClass]="'ct-perfect-fourth'"
+                                        [chartType]="activeUsersType"
+                                        [chartData]="activeUsersData"
+                                        [legendItems]="eactiveUsersLegendItems"
+                                        [withHr]="true"
+                                        [footerIconClass]="'fa fa-clock-o'"
+                                        [footerText]="''">
+                                </lbd-chart>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div *ngIf="active1">
+                                <lbd-chart
+                                        [title]="'New Users Year 2021'"
+                                        [subtitle]="'this grapgh shows new users this year'"
+                                        [chartType]="InscriptionChartType"
+                                        [chartData]="InscriptionChartData"
+                                        [chartOptions]="InscriptionChartOptions"
+                                        [chartResponsive]="InscriptionChartResponsive"
+                                        [legendItems]="InscriptionChartLegendItems"
+                                        [withHr]="true"
+                                        [footerIconClass]="'fa fa-history'"
+                                        [footerText]="''">
+                                </lbd-chart>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">Users List</h4>
+                        <p class="category">Create, Change or Delete Users</p>
+                        <a class="btn btn-info btn-fill pull-right" href="users">Create</a>
+                    </div>
+                    <div class="content table-responsive table-full-width">
+                        <table class="table table-hover table-striped">
+                            <thead>
+                            <tr>
+                                <th *ngFor="let cell of tableData1.headerRow">{{ cell }}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr *ngFor="let row of tableData1.dataRows">
+                                <td *ngFor="let cell of row; index as i;">
+                                    <div *ngIf="i == row.length-2 && cell == 'false'">
+                                        <input type="radio" [checked]="" disabled/>
+                                    </div>
+                                    <div *ngIf="i == row.length-2 && cell == 'true'">
+                                        <input type="radio" [checked]="cell" disabled/>
+                                    </div>
+                                    <div *ngIf="i == row.length-1">
+                                        <button class="btn btn-danger btn-fill" (click)="delete(row[0])">{{cell}}</button>
+                                    </div>
+                                    <div *ngIf="i !== row.length-1 && i !== row.length-2">
+                                        <a href="users/{{ row[0] }}">{{cell}}</a>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

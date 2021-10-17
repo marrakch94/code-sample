@@ -1,0 +1,48 @@
+<div fxLayout class="main-content">
+    <div fxFlex="20">
+        <button (click)="new()" style="margin-top: 10px;margin-bottom: 10px; width: 100%;" class="btn btn-primary"
+            id="new">
+            New</button>
+            <button routerLink="schedule" style="margin-top: 10px;margin-bottom: 10px; width: 100%;" class="btn btn-primary"
+            id="new">
+            Schedule Notfications</button>
+        <div class="list-group">
+            <a *ngFor="let notif of notifs;" (click)="select(notif)"
+                [ngClass]="{'list-group-item': true, 'active' : selected?.id == notif.id }"> {{ notif.title }} </a>
+        </div>
+    </div>
+    <div fxFlex style="padding : 10px;margin : 5px" class="card">
+        <h4>Title</h4>
+        <div class="input-group" style="padding: 10px; width: 100%;">
+            <input type="text" class="form-control" [(ngModel)]="title" placeholder="Title">
+        </div>
+        <h4>Type</h4>
+        <div class="input-group">
+            <input name="type" type="radio" [(ngModel)]="type" value="WEB"><span class="radio-label">Web </span>
+            <input name="type" type="radio" [(ngModel)]="type" value="EMAIL"><span class="radio-label">Email</span>
+            <input name="type" type="radio" [(ngModel)]="type" value="BOTH"><span class="radio-label">Both</span>
+        </div>
+        <h4>Target</h4>
+        <div class="input-group">
+            <input name="target" type="radio" [(ngModel)]="target" value="UNSPECIFIED"><span
+                class="radio-label">Unspecified</span>
+            <input name="target" type="radio" [(ngModel)]="target" value="USER"><span class="radio-label">Users </span>
+            <input name="target" type="radio" [(ngModel)]="target" value="ADMIN"><span class="radio-label">Admins</span>
+            <input name="target" type="radio" [(ngModel)]="target" value="ALL"><span class="radio-label">ALL</span>
+        </div>
+        <h4>Schedulable</h4>
+        <div class="input-group">
+            <input name="Schedulable" type="checkbox" [disabled]="selected?.default" [(ngModel)]="isSchedule"><span
+                class="radio-label">Schedulable</span>
+        </div>
+        <h4>Notification Body</h4>
+        <angular-editor [placeholder]="'Enter text here...'" [(ngModel)]="htmlContent"></angular-editor>
+        <button [disabled]="!selected" [routerLink]="'preview/'+selected?.id"
+            style="margin-top: 10px ;" class="btn btn-primary" id="Preview">Preview</button>
+        <button (click)="save()" style="margin-top: 10px ;" class="btn btn-primary" id="save">Save</button>
+        <button (click)="delete(selected)" [disabled]="selected?.default"  style="margin-top: 10px ;" class="btn btn-primary"
+            id="delete">Delete</button>
+
+        <button (click)="reset()" [disabled]="selected" style="margin-top: 10px ;" class="btn btn-primary" id="reset">Reset</button>
+    </div>
+</div>

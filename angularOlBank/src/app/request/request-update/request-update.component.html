@@ -1,0 +1,26 @@
+
+<h2>Update Request</h2>
+
+<hr/>
+
+<form  action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+    Request Date:<br>
+    <input type="text" [(ngModel)]="request.requestDate" name="requestDate" class="inputWidht">
+    <br> Request Type:<br>
+    <input type="text" [(ngModel)]="request.requestType" name="requestType" class="inputWidht">
+
+    <br><br>
+    <div class="form-group">
+    <label for="sel1">State:</label>
+
+    <select class="form-control" id="sel1" [(ngModel)]="request.status"  name="status" >
+      <option selected="{{  request.status == 'accepted' ? 'selected' : '' }}" value="accepted" >Accepted</option>
+      <option selected="{{  request.status == 'pending' ? 'selected' : '' }}" value="pending" >Pending</option>
+      <option selected="{{  request.status == 'not-accepted' ? 'selected' : '' }}" value="not-accepted" >Not accepted</option>
+    </select>
+
+  </div>
+    <input type="button" value="Cancel" (click)="goBack()">
+
+    <input type="submit" style="margin-left:5px;" (click)="submit(request)">
+</form>
